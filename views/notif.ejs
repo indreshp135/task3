@@ -1,0 +1,43 @@
+<%- include('mainpage.ejs') %>
+
+<style type="text/css">
+	#invites
+	{
+		font-size:20px;
+		color:white;
+		text-align: center;
+	}
+	p
+	{
+		padding: 10px;
+	}
+	.inp
+	{
+		right: 10px;
+		position: absolute;
+		transform: translateY(-100%);
+		font-weight: bolder;
+		background-color: transparent;
+		color: white;
+	}
+</style>
+<div class="maindisp" id="invites">
+	<% if(user.notif.length==0){ %>
+		<p>No new notifications!</p>
+	<%} else{ for(var i=0;i<user.notif.length;i++){%>
+		<p id="n<%=i%>"></p>
+		<form method="post" action='/remove/<%=user.username%>/<%=user.notif[i]%>'>
+			<input type="submit" name="read" value="read" class="inp">
+			<hr>
+	<% }} %>
+</div>
+
+<script type="text/javascript">
+	<%for(var i=0;i<user.notif.length;i++){%>
+		var htmlData="<%= user.notif[i] %>"
+		htmlData = htmlData.split("^").join(" ")
+		document.querySelector("#n"+<%=i%>).innerHTML=htmlData;
+		<%}%>
+</script>
+
+<%- include('down.ejs') %>

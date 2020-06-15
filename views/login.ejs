@@ -1,0 +1,71 @@
+<%- include ('bk.ejs') %>
+
+<style type="text/css">
+	hr
+	{
+		border-top: 3px solid white;
+	}
+	.divi
+	{
+		position: absolute;
+		border:3px solid white;
+		border-radius: 30px;
+		left: 50%;
+		transform: translateX(-50%);
+		top: calc(50% - 150px);
+		height: 300px;
+		width:300px;
+		opacity: 0.9;
+		background-color: transparent;
+		color: white;
+		font-size: 2.5ex;
+		font-family: "Lucida Console", Courier, monospace;
+		font-weight: bolder;
+		text-shadow: 2px 2px #000;
+	}
+	#username,#password
+	{
+		text-align: center;
+		text-shadow: 2px 2px #000;
+	}
+	.con
+	{
+		width:200px;
+		height: 30px;
+		border-radius: 10px;
+	}
+	.btn
+	{
+		color:black;
+		width: 70px;
+		height: 30px;
+		border-radius: 3px;
+		font-weight: bolder;
+	}
+</style>
+<div class="divi">
+	<center><h3>Login</h3></center>
+	<hr>
+	<form method="POST" action="/login">
+	    <div id="username">
+	    	<label>Username:</label>
+	    	<br>
+	    	<br>
+	    	<input class="con" name="username" type="text" required/>
+	    </div>
+	    <br>
+	    <div id="password">
+	    	<label>Password:</label>
+	    	<br>
+	    	<br>
+	    	<input class="con" name="password" type="password" required/>
+	    </div>
+	    <br/>
+	    <center>
+	    	<input class="btn" type="submit" value="Submit" />
+	    	<br>
+	    </center>
+	</form>
+</div>
+
+	<%- include('down.ejs') %>

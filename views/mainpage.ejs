@@ -1,0 +1,182 @@
+<%- include ('bk.ejs') %>
+<style>
+	a
+	{
+		color: white;
+		text-decoration:none;
+	}
+	.uppart
+	{
+		position: absolute;
+		background-color: rgba(15,86,97,0.8);
+		width:100%;
+		height: 15%;
+		top:2%;
+		padding: 0;
+		border:0;
+		margin: 0;
+		font-size: 20px;
+		font-family: "Lucida Console", Courier, monospace;
+		opacity: 0.9;
+		color: white;
+	}
+	#call
+	{
+		position: absolute;
+		font-size: 30px;
+		left: 10px;
+		top:calc(50% - 15px);
+		font-weight: bolder;
+		font-style: italic;
+		color: black;
+		text-shadow: 2px 2px #fff;
+	}
+	#logout
+	{
+		position: absolute;
+		right: 40px;
+		top:calc(50% - 10px);
+	}
+	#noti
+	{
+		text-decoration:underline;
+		position: absolute;
+		right: 150px;
+		top:calc(50% - 10px);
+	}
+	#noti:hover
+	{
+		cursor: pointer;
+	}
+	.side
+	{
+		position: absolute;
+		background-color: rgba(15,86,97,1);
+		top:61%;
+		left: 30px;
+		height:190px;
+		width: 200px;
+		border-radius: 10%;
+		border-style: solid;
+		border-width: 2px;
+		border-color: white;
+		overflow: hidden;
+	}
+
+	.si
+	{
+		height: 22px;
+		font-weight: bold;
+		text-align: center;
+		padding :12px;
+		border-bottom-width: 2px;
+		border-bottom-style: solid;
+		border-color: white;
+		color: white;
+		font-size: 25px;
+	}
+	.si:hover
+	{
+		cursor: pointer;
+		color: red;
+		background-color: red;
+		font-size: 27px;
+	}
+	.si:nth-last-child(1)
+	{
+		border-bottom-width: 0px;
+	}
+	.photoframe
+	{
+		position: relative;
+		top:calc(20%);
+		left: 70px;
+		height: 120px;
+		width: 120px;
+		border:5px solid white;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	.email
+	{
+		position: absolute;
+		top:calc(185px + 15%);
+		left:30px;
+		width:200px;
+		height: 25px;
+		border:3px solid white;
+		border-radius: 10px;
+		font-size:15px;
+		color: white;
+		text-align: center;
+		background-color: rgba(15,86,97,0.8);
+	}
+	::-webkit-scrollbar
+	{
+	  width: 15px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track 
+	{
+	  background-color: #f1f1f1;
+	  box-shadow: inset 0 0 5px white; 
+	  border-radius: 5px;
+	}
+	 
+	/* Handle */
+	::-webkit-scrollbar-thumb 
+	{
+	  background: red; 
+	  border-radius: 10px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover
+	{
+	  background: #b30000; 
+	}
+	.maindisp
+	{
+		position: absolute;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		background-color: rgba(15,86,97,0.8);
+		width:calc(100% - 290px);
+		height: calc(80% - 30px);
+		top:calc(30px + 15%);
+		left:260px;
+		border:white solid 3px;
+		border-radius: 10px;
+	}
+</style>
+
+<div class="uppart">
+	<div id=call>Welcome <%= user.username %>!</div>
+	<div id="noti"><a id="notif"> Notifications</a></div>
+	<div id="logout"><a href="/logout">LOGOUT</a></div>
+</div>
+
+<div class="photoframe">
+	<img id="photo" style="object-fit: contain;">
+</div>
+
+<div class="email">hai</div>
+
+<div class="side">
+	<div  class="si"><a id="invited">Invited</a></div>
+	<div  class="si"><a id="accepted">Accepted</a></div>
+	<div  class="si"><a id="created">Created</a></div>
+	<div  class="si"><a id="newinv">New Invitation</a></div>
+</div>
+
+<script type="text/javascript">
+	document.querySelector("#photo").src="https://api.adorable.io/avatars/120/"+"<%= user.username %>"+".png";
+	document.querySelector(".email").innerHTML="<%= user.email %>"
+	document.querySelector("#notif").href="/Invitebox/"+"<%= user.username %>"+"/notif";
+	document.querySelector("#invited").href="/Invitebox/"+"<%= user.username %>"+"/invites";
+	document.querySelector("#accepted").href="/Invitebox/"+"<%= user.username %>"+"/accepted";
+	document.querySelector("#created").href="/Invitebox/"+"<%=user.username %>"+"/created";
+	document.querySelector("#newinv").href="/Invitebox/"+"<%= user.username %>"+"/newinv";
+</script>
+

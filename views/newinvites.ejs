@@ -1,0 +1,197 @@
+<%- include('mainpage.ejs') %>
+
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+<style type="text/css">
+	.nava
+	{
+		position: relative;
+		width: 100%;
+		height: 30px;
+		text-align: center;
+	}
+	.b1
+	{
+		width: 25%;
+		float: left;
+		height: 40px;
+		color: white;
+		font-size: 30px;
+		border-bottom:3px solid white;
+		/*border-right:3px solid white; */
+	}
+	.b1:hover
+	{
+		cursor: pointer;
+		font-size: 27px;
+	}
+	label,#cj
+	{
+		position: relative;
+		left:5%;
+		width:20%;
+	}
+	input,#ck
+	{
+		position: relative;
+		background-color: transparent;
+		border-radius: 10px;
+		height: 25px;
+		color: white;
+		width:70%;
+		/*transform: translateX(100%);*/
+		left: 5%;
+		font-size: 20px;
+		text-align: center;
+	}
+	#ck
+	{
+		text-align: left;
+		font-size: 27px;
+	}
+	.former
+	{
+		position: relative;
+		top:10px;
+		color: white;
+		font-size: 25px;
+	}
+	#sbt
+	{
+		width:100px;
+		height: 30px;
+		left: calc(50% - 50px);
+	}
+	#gen
+	{
+		color: red;
+		background-color: white;
+	}
+</style>
+
+
+<div class="maindisp" id="newinvdiv">
+	<div class="nava">
+		<div class="b1" id="bday" onclick="fn(1)">Birthday</div>
+		<div class="b1" id="fun" onclick="fn(2)">Funeral</div>
+		<div class="b1" id="wed" onclick="fn(3)">Wedding</div>
+		<div class="b1" id="gen" onclick="fn(4)">General</div>
+	</div>
+	<form method="post" action="/<%= user.username %>/newinv">
+		<div class="former">
+			<label >Type :</label>
+			<input type="text" name="typeof" value="Party" id="typeof" readonly>
+		</div>
+		<br>
+		<div class="former">
+			<label>Header :</label>
+			<input type="text" name="header" id="header">
+		</div>
+		<br>
+		<div class="former">
+			<label>Footer :</label>
+			<input type="text" name="footer" id="footer">
+		</div>
+		<br>
+		<div class="former">
+			<label>Time :</label>
+			<input type="datetime-local" name="atTime" required>
+		</div>
+		<br>
+		<div class="former">
+			<label>Deadline :</label>
+			<input type="datetime-local" name="deadline" required>
+		</div>
+		<br>
+		<div class="former">
+			<label>Invite list :</label>
+			<input type="text" name="called" placeholder ="space seperated">
+		</div>
+		<br>
+		<div class="former">
+			<label id="ck">Invite All</label>
+			<input type="checkbox" name="all" id=cj>
+		</div>
+		<br>
+		<div class="former">
+			<label>Content :</label>
+		</div>
+		<br>
+		<textarea name="content" id="content"></textarea>
+		<br>
+    	<input class="btn" type="submit" value="Submit" id="sbt">
+    	<br>
+	    <br>
+	</form>
+</div>
+
+<script type="text/javascript">
+	function fn(k)
+	{
+		if(k==1)
+		{
+			document.querySelector("#typeof").value="Birthday Party";
+			document.querySelector("#header").value="Hey there! [someone] turns [age]!";
+			document.querySelector("#footer").value="Invited by "+"<%= user.username%>";
+			tinymce.get('content').getBody().innerHTML =
+			 '<p>[someone] is celebrating birthday on [date] at [time],[place]. We invite you and your family!</p>';
+			document.querySelector("#bday").style.background="white";
+			document.querySelector("#bday").style.color="red";
+			document.querySelector("#fun").style.background="transparent";
+			document.querySelector("#fun").style.color="white";
+			document.querySelector("#wed").style.background="transparent";
+			document.querySelector("#wed").style.color="white";
+			document.querySelector("#gen").style.background="transparent";
+			document.querySelector("#gen").style.color="white";
+		}
+		if(k==2)
+		{
+			document.querySelector("#typeof").value="Funeral";
+			document.querySelector("#header").value="[someone]'s funeral";
+			document.querySelector("#footer").value="Invited by "+"<%= user.username%>";
+			tinymce.get('content').getBody().innerHTML =
+			 '<p>[someone] died on [date] . We invite you and your family for his/her funeral on on [time,date] at [place] !</p>';
+			document.querySelector("#bday").style.background="transparent";
+			document.querySelector("#bday").style.color="white";
+			document.querySelector("#fun").style.background="white";
+			document.querySelector("#fun").style.color="red";
+			document.querySelector("#wed").style.background="transparent";
+			document.querySelector("#wed").style.color="white";
+			document.querySelector("#gen").style.background="transparent";
+			document.querySelector("#gen").style.color="white";
+		}
+		if(k==3)
+		{
+			document.querySelector("#typeof").value="Wedding";
+			document.querySelector("#header").value="[someone] weds [someone]";
+			document.querySelector("#footer").value="Invited by "+"<%= user.username%>";
+			tinymce.get('content').getBody().innerHTML =
+			 '<p>[someone] weds [someone] on [time,date] at [place]. We invite you and your family for this event !</p>';
+			document.querySelector("#bday").style.background="transparent";
+			document.querySelector("#bday").style.color="white";
+			document.querySelector("#fun").style.background="transparent";
+			document.querySelector("#fun").style.color="white";
+			document.querySelector("#wed").style.background="white";
+			document.querySelector("#wed").style.color="red";
+			document.querySelector("#gen").style.background="transparent";
+			document.querySelector("#gen").style.color="white";
+		}
+		if(k==4)
+		{
+			document.querySelector("#typeof").value="Party";
+			document.querySelector("#header").value="";
+			document.querySelector("#footer").value="";
+			tinymce.get('content').getBody().innerHTML ="";
+			document.querySelector("#bday").style.background="transparent";
+			document.querySelector("#bday").style.color="white";
+			document.querySelector("#fun").style.background="transparent";
+			document.querySelector("#fun").style.color="white";
+			document.querySelector("#wed").style.background="transparent";
+			document.querySelector("#wed").style.color="white";
+			document.querySelector("#gen").style.background="white";
+			document.querySelector("#gen").style.color="red";
+		}
+	}	
+</script>
+
+<%- include('down.ejs') %>

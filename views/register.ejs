@@ -1,0 +1,90 @@
+<%- include ('bk.ejs') %>
+
+<%- include ('bk.ejs') %>
+
+<style type="text/css">
+	.divi
+	{
+		position: absolute;
+		border:3px solid white;
+		border-radius: 30px;
+		left: 50%;
+		transform: translateX(-50%);
+		top: calc(50% - 220px);
+		height: 440px;
+		width:300px;
+		opacity: 0.9;
+		background-color: transparent;
+		color: white;
+		font-size: 2.3ex;
+		font-family: "Lucida Console", Courier, monospace;
+		font-weight: bolder;
+		text-shadow: 2px 2px #000;
+	}
+	#username,#password
+	{
+		font-size: 1.7ex;
+		text-align: center;
+		text-shadow: 2px 2px #000;
+	}
+	.con
+	{
+		width:200px;
+		height: 20px;
+		border-radius: 10px;
+	}
+	.btn
+	{
+		color:black;
+		width: 70px;
+		height: 30px;
+		border-radius: 3px;
+		font-weight: bolder;
+	}
+	hr
+	{
+		border-top: 3px solid white;
+	}
+</style>
+<div class="divi">
+	<center><h3 >Register</h3></center>
+	<hr>
+	<form method="POST" action="/">
+	    <div id="username">
+	    	<label>Username:</label>
+	    	<br>
+	    	<br>
+	    	<input class="con" name="username" type="text" />
+	    </div>
+	    <br>
+	    <div id="username">
+	    	<label>Email:</label>
+	    	<br>
+	    	<br>
+	    	<input class="con" name="email" type="email" />
+	    </div>
+	    <br>
+	    <div id="password">
+	    	<label>Password:</label>
+	    	<br>
+	    	<br>
+	    	<input class="con" name="password" type="password" />
+	    </div>
+	    <br/>
+	     <div id="password">
+	    	<label>Confirm Password:</label>
+	    	<br>
+	    	<br>
+	    	<input class="con" name="password2" type="password" />
+	    </div>
+	    <br/>
+	    <center>
+	    	<input class="btn" type="submit" value="Submit" />
+	    	<br>
+	    	<br>
+	    	<a href="/login" style="text-shadow: white">Already Registered?,Login!</a>
+	    </center>
+	</form>
+</div>
+
+<%- include('down.ejs') %>

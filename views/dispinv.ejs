@@ -1,0 +1,86 @@
+<%- include('mainpage.ejs') %>
+<style type="text/css">
+	.see
+	{
+		text-align: center;
+		color: white;
+		font-size: 25px;
+	}
+	#header,#footer
+	{
+		background-color: white;
+		color: black;
+		font-size: 23px;
+		height: 25px;
+		font-weight: bolder;
+	}
+	#footer{
+		position: relative;
+		bottom: 0px;
+	}
+	#seeim
+	{
+		position: relative;
+		border-radius: 20px;
+		width: 100px;
+		height: 100px;
+	}
+	#acc,#reject
+	{
+		width: 70px;
+		height: 30px;
+		border-radius: 20px;
+	}
+</style>
+<div class="maindisp" id="idispinv">
+	<div class="see">
+		<div id="header"><%=invs.header%></div>
+		<br>
+		<img id="seeim">
+		<br>
+		<div id="co"></div>
+		<br>
+		<div id="time"><%=invs.atTime%></div>
+		<br>
+		<form method="post" action="/<%=user.username%>/<%=user._id%>/<%=invs._id%>/accept">
+			<label>Food Preference:</label>
+			<input type="radio" name="veg">
+			<label>Veg</label>
+			<input type="radio" name="nonveg">
+			<label>Non-Veg</label>
+			<br><br>
+			<label>No of people comming:</label>
+			<input type="number" name="nop" min=0>
+			<br><br>
+			<input type="submit" name="submit" value="accept" id="acc" style="background-color: green; color: white">
+		</form>
+		<br>
+		<form method="post" action="/<%=user.username%>/<%=user._id%>/<%=invs._id%>/reject">
+			<input type="submit" name="submit" value="reject" style="background-color: red;color: white" id="reject">
+		</form>
+		<br>
+		<div id="footer"><%=invs.footer%></div>
+	</div>
+</div>
+<%- include('down.ejs') %>
+<script type="text/javascript">
+	if("<%=invs.typeof%>"=='Party')
+		document.querySelector("#seeim").src="/images/party.jpg";
+	else if("<%=invs.typeof%>"=='Birthday Party')
+		document.querySelector("#seeim").src="/images/bday.jpg";
+	else if("<%=invs.typeof%>"=="Wedding")
+		document.querySelector("#seeim").src="/images/wed.jpg";
+	else
+		document.querySelector("#seeim").src="/images/fun.jpg";
+	var now=new Date();
+	dt="<%= invs.deadline %>"
+	var dat=new Date(dt)
+	if(dat.getTime() <= now.getTime())
+	{
+		document.querySelector(".see").innerHTML="Sorry deadline over!";
+	}
+	var htmlData="<%= invs.content %>"
+	htmlData = htmlData.replaceAll("&lt;", "<");
+	htmlData = htmlData.replaceAll("&gt;", ">");
+	document.querySelector("#co").innerHTML=htmlData
+</script>

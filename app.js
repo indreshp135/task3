@@ -437,11 +437,12 @@ app.post('/:name/newinv',function(req,res,next)
 	        				var email=user.email;
 		        			console.log(email);
 		        			var sr="From "+host
+		        			htmlData = str.split("^").join(" ")
 					        var mailOptions = {
 							  from: 'invisadelta@gmail.com',
 							  to: email,
 							  subject: sr,
-							  text: str,
+							  text: htmlData,
 							}
 							transporter.sendMail(mailOptions, function(error, info){
 							  if (error) {
@@ -488,11 +489,12 @@ app.post('/:name/newinv',function(req,res,next)
 		        				var email=user.email;
 			        			console.log(email);
 			        			var sr="From "+host
+			        			htmlData = str.split("^").join(" ")
 						        var mailOptions = {
 								  from: 'invisadelta@gmail.com',
 								  to: email,
 								  subject: sr,
-								  text: str,
+								  text: htmlData,
 								}
 								transporter.sendMail(mailOptions, function(error, info){
 								  if (error) {

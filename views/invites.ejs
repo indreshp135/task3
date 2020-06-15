@@ -42,8 +42,8 @@
 <div class="maindisp" id="invites">
 	<div class="show">
 	<%if(invs.length==0){%>
-	No new invites yet!
-	<%}%>
+	<p style="text-align: center;padding: 10px;">No new invites yet!<p>
+	<%}else{%>
 	<% for(var i=0;i<invs.length;i++) { %>
 	<a href="/Invitebox/<%=user.username%>/<%=invs[i]._id%>/disp">
 		<div class="invs" id="in<%=i%>" onclick="invo(<%=i%>)">
@@ -61,7 +61,7 @@
 			</p>
 		</div>
 	</a>
-	<% } %>
+	<% }} %>
 	</div>
 	
 	</div>

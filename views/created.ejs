@@ -1,7 +1,9 @@
 <%- include('mainpage.ejs') %>
 
 <style type="text/css">
+	
 
+	
 	#im
 	{
 		position: relative;
@@ -39,11 +41,11 @@
 	}
 </style>
 <div class="maindisp" id="invites">
-	<% if(user.created.length==0){ %>
-		<p>Create Some Invitations!</p>
-	<% }else{ %>
-	<div class="show">
 	
+	<div class="show">
+	<% if(user.created.length==0){ %>
+		<p style="text-align: center; padding: 10px;">Create Some Invitations!</p>
+	<% }else{ %>
 	<% for(var i=0;i<invs.length;i++) { %>
 	<a href="/Invitebox/<%=user.username%>/<%=invs[i]._id%>/show">
 		<div class="invs" id="in<%=i%>" onclick="invo(<%=i%>)">

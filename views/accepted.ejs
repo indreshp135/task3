@@ -2,6 +2,8 @@
 
 <style type="text/css">
 
+
+	
 	#im
 	{
 		position: relative;
@@ -31,17 +33,19 @@
 	{
 		cursor: pointer;
 	}
-	.see
+	.show
 	{
-		display: none;
+		color: white;
+		/*text-align: center;*/
+		font-size: 25px;
 	}
 </style>
 <div class="maindisp" id="invites">
-	<% if(user.accepted.length==0){ %>
-		<p>Accept Some Invitations!</p>
-	<% }else{ %>
-	<div class="show">
 	
+	<div class="show">
+	<% if(user.accepted.length==0){ %>
+		<p style="text-align: center;padding: 10px;">Accept Some Invitations!</p>
+	<% }else{ %>
 	<% for(var i=0;i<invs.length;i++) { %>
 	<a href="/Invitebox/<%=user.username%>/<%=invs[i]._id%>/show">
 		<div class="invs" id="in<%=i%>" onclick="invo(<%=i%>)">

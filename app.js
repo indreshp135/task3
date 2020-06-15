@@ -127,7 +127,7 @@ app.post('/login', function(req, res, next)
   passport.authenticate('local', {
     successRedirect:'/Invitebox/'+req.body.username+'/invites',
     failureRedirect:'/login',
-    failureFlash: true
+    failureFlash: false
   })(req, res, next);
 });
 
